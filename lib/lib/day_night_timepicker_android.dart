@@ -116,16 +116,10 @@ class DayNightTimePickerAndroid extends StatefulWidget {
     this.minMinute,
     this.isInlineWidget = false,
     this.focusMinutePicker = false,
-  }) {
-    if (isInlineWidget) {
-      this.cancelText = "reset";
-      this.okText = "apply";
-    }
-  }
+  });
 
   @override
-  _DayNightTimePickerAndroidState createState() =>
-      _DayNightTimePickerAndroidState();
+  _DayNightTimePickerAndroidState createState() => _DayNightTimePickerAndroidState();
 }
 
 /// Picker state class
@@ -163,8 +157,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
   @override
   void didUpdateWidget(DayNightTimePickerAndroid oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.is24HrFormat != widget.is24HrFormat ||
-        oldWidget.value != widget.value) {
+    if (oldWidget.is24HrFormat != widget.is24HrFormat || oldWidget.value != widget.value) {
       separateHoursAndMinutes();
     }
   }
@@ -221,8 +214,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
     widget.onChange(time);
     if (widget.onChangeDateTime != null) {
       final now = DateTime.now();
-      final dateTime =
-          DateTime(now.year, now.month, now.day, time.hour, time.minute);
+      final dateTime = DateTime(now.year, now.month, now.day, time.hour, time.minute);
       widget.onChangeDateTime!(dateTime);
     }
     onCancel(result: widget.value);
@@ -287,8 +279,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
               widget.displayHeader!
                   ? DayNightBanner(
                       hour: getHours(hour, a, widget.is24HrFormat),
-                      displace:
-                          mapRange(hour! * 1.0, hourMinValue, hourMaxValue),
+                      displace: mapRange(hour! * 1.0, hourMinValue, hourMaxValue),
                       sunAsset: widget.sunAsset,
                       moonAsset: widget.moonAsset,
                     )
@@ -296,8 +287,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
               Container(
                 height: height,
                 color: Theme.of(context).cardColor,
-                padding:
-                    const EdgeInsets.only(left: 12.0, top: 12.0, right: 12.0),
+                padding: const EdgeInsets.only(left: 12.0, top: 12.0, right: 12.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -321,8 +311,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                           Material(
                             color: Colors.transparent,
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 3.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 3.0),
                               child: InkWell(
                                 onTap: widget.disableHour!
                                     ? null
@@ -330,22 +319,17 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                         changeCurrentSelector(true);
                                       },
                                 child: Opacity(
-                                  opacity:
-                                      hourIsSelected ? 1 : unselectedOpacity,
+                                  opacity: hourIsSelected ? 1 : unselectedOpacity,
                                   child: Text(
                                     "$hour",
                                     textScaleFactor: 1.0,
-                                    style: _commonTimeStyles.copyWith(
-                                        color: hourIsSelected
-                                            ? color
-                                            : unselectedColor),
+                                    style: _commonTimeStyles.copyWith(color: hourIsSelected ? color : unselectedColor),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          Text(":",
-                              textScaleFactor: 1.0, style: _commonTimeStyles),
+                          Text(":", textScaleFactor: 1.0, style: _commonTimeStyles),
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
@@ -355,18 +339,13 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                                       changeCurrentSelector(false);
                                     },
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 3.0),
+                                padding: const EdgeInsets.symmetric(horizontal: 3.0),
                                 child: Opacity(
-                                  opacity:
-                                      !hourIsSelected ? 1 : unselectedOpacity,
+                                  opacity: !hourIsSelected ? 1 : unselectedOpacity,
                                   child: Text(
                                     padNumber(minute),
                                     textScaleFactor: 1.0,
-                                    style: _commonTimeStyles.copyWith(
-                                        color: !hourIsSelected
-                                            ? color
-                                            : unselectedColor),
+                                    style: _commonTimeStyles.copyWith(color: !hourIsSelected ? color : unselectedColor),
                                   ),
                                 ),
                               ),
@@ -381,9 +360,7 @@ class _DayNightTimePickerAndroidState extends State<DayNightTimePickerAndroid> {
                           onOk();
                         }
                       },
-                      value: hourIsSelected
-                          ? hour!.roundToDouble()
-                          : minute.roundToDouble(),
+                      value: hourIsSelected ? hour!.roundToDouble() : minute.roundToDouble(),
                       onChanged: onChangeTime,
                       min: min,
                       max: max,

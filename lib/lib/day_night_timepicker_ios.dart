@@ -125,12 +125,7 @@ class DayNightTimePickerIos extends StatefulWidget {
     this.minMinute,
     this.isInlineWidget = false,
     this.focusMinutePicker = false,
-  }) {
-    if (isInlineWidget) {
-      this.cancelText = "reset";
-      this.okText = "apply";
-    }
-  }
+  });
 
   @override
   _DayNightTimePickerIosState createState() => _DayNightTimePickerIosState();
